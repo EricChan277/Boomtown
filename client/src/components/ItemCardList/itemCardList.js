@@ -1,8 +1,13 @@
-import React from 'react';
-import ItemCard from "itemCard";
+import React from "react";
+import ItemCard from "../ItemCard";
 
-const ItemCardList = ({ ItemCard }) => (
-
-);
+const ItemCardList = props => {
+  return (
+    <ul>
+      {console.log(props.itemsData)}
+      {/* <ItemCard /> */}
+    </ul>
+  );
+};
 
 export default ItemCardList;

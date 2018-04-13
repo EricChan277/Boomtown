@@ -1,5 +1,11 @@
 import React from "react";
 
-const ItemCard = () => {};
+const ItemCard = props => {
+  return (
+    <div>
+      <p> ItemCard </p>
+    </div>
+  );
+};
 
-export default itemCard;
+export default ItemCard;

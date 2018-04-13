@@ -24,15 +24,15 @@ class ItemsContainer extends Component {
         items = itemsObj[0];
         user = itemsObj[1];
         items.map((item, itemowner) => {
-          //   console.log(item);
+          // console.log(item);
           user.map((user, id) => {
             // console.log(user);
             if (item.itemowner == user.id) {
               //   console.log("hello");
               item.itemowner = user;
-              //   console.log(item);
+              // console.log(item);
+              this.setState({ isLoading: false, itemsData: item });
             }
-            this.setState({ isLoading: false, item: items });
           });
         });
       }
@@ -42,7 +42,8 @@ class ItemsContainer extends Component {
   render() {
     return (
       <div>
-        <Items />
+        <Items itemsData={this.state.itemsData} />
+        {/* {console.log(this.state.itemsData)} */}
       </div>
     );
   }

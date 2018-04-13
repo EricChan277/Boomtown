@@ -110,7 +110,7 @@
       "description":
         "Relive your youth! And try not to seriously injure yourself while doing it!",
       "imageurl":
-        "https://firebasestorage.googleapis.com/v0/b/boomtown-dfdd8.appspot.com/o/demo-images%2Fskateboard.jpg?alt=media",
+        "https://firebasestorage.googleapis.com/v0/b/boomtown-demo.appspot.com/o/skateboard.jpg?alt=media&token=e7862eaf-62c8-4b77-b2b6-8d68e9950d9e",
       "tags": ["Sporting Goods"],
       "itemowner": "eEvh1WUF5nb5eeUksUQb3Ph0kOU2",
       "created": "2017-09-24 16:25:13.995983-07",
@@ -123,7 +123,7 @@
       "description":
         "Dress for the job you want, not the one you have, with freshly pressed shirts and slacks.",
       "imageurl":
-        "https://firebasestorage.googleapis.com/v0/b/boomtown-dfdd8.appspot.com/o/demo-images%2Firon-and-board.jpg?alt=media",
+        "https://firebasestorage.googleapis.com/v0/b/boomtown-demo.appspot.com/o/iron-and-board.jpg?alt=media&token=cc275d6c-2000-4fb7-bd7d-0316fa8b74fe",
       "tags": ["Household Items"],
       "itemowner": "k721A4pRNggCx7b6ryEE8vx1VIi1",
       "created": "2017-09-23 16:24:21.397221-07",
@@ -136,7 +136,7 @@
       "description":
         "Required equipment to pass the Hipster School entrance exam.",
       "imageurl":
-        "https://firebasestorage.googleapis.com/v0/b/boomtown-dfdd8.appspot.com/o/demo-images%2Frecord-player.jpg?alt=media",
+        "https://firebasestorage.googleapis.com/v0/b/boomtown-demo.appspot.com/o/record-player.jpg?alt=media&token=7bd5242b-ba34-4d4f-b3b2-2e758246d53c",
       "tags": ["Electronics"],
       "itemowner": "Qdd5HoEin0OPxNUZcB5sDc7xGHD2",
       "created": "2017-09-22 16:23:24.992259-07",
@@ -148,7 +148,7 @@
       "title": "Polaroid Camera",
       "description": "In perfect working condition—the original Instagram app.",
       "imageurl":
-        "https://firebasestorage.googleapis.com/v0/b/boomtown-dfdd8.appspot.com/o/demo-images%2Fpolaroid.jpg?alt=media",
+        "https://firebasestorage.googleapis.com/v0/b/boomtown-demo.appspot.com/o/polaroid.jpg?alt=media&token=8e30939c-f52b-452c-8a0f-1a0c6feafd89",
       "tags": ["Electronics"],
       "itemowner": "Qdd5HoEin0OPxNUZcB5sDc7xGHD2",
       "created": "2017-09-22 16:22:46.097822-07",
@@ -161,7 +161,7 @@
       "description":
         "Musty old volumes to enjoy. Includes Shakespeare, Dickens, Poe, and more.",
       "imageurl":
-        "https://firebasestorage.googleapis.com/v0/b/boomtown-dfdd8.appspot.com/o/demo-images%2Fbook-collection.jpg?alt=media",
+        "https://firebasestorage.googleapis.com/v0/b/boomtown-demo.appspot.com/o/book-collection.jpg?alt=media&token=70e9b572-fc23-44eb-bc9d-9952f8ca568e",
       "tags": ["Physical Media"],
       "itemowner": "k721A4pRNggCx7b6ryEE8vx1VIi1",
       "created": "2017-09-21 16:21:50.699373-07",
@@ -174,7 +174,7 @@
       "description":
         "Be that guy! Spy on your neighbour's from a bird's eye view instead through the drapes.",
       "imageurl":
-        "https://firebasestorage.googleapis.com/v0/b/boomtown-dfdd8.appspot.com/o/demo-images%2Fdrone.jpg?alt=media",
+        "https://firebasestorage.googleapis.com/v0/b/boomtown-demo.appspot.com/o/drone.jpg?alt=media&token=9fed6bfa-e4de-4dab-b147-3f5619388520",
       "tags": ["Electronics"],
       "itemowner": "eEvh1WUF5nb5eeUksUQb3Ph0kOU2",
       "created": "2017-09-20 16:21:02.910345-07",
@@ -187,7 +187,7 @@
       "description":
         "New Playstation to lend for those times when analog fun just won't do the trick.",
       "imageurl":
-        "https://firebasestorage.googleapis.com/v0/b/boomtown-dfdd8.appspot.com/o/demo-images%2Fplaystation.jpg?alt=media",
+        "https://firebasestorage.googleapis.com/v0/b/boomtown-demo.appspot.com/o/playstation.jpg?alt=media&token=852563f1-0e52-48f6-b3fb-3adf3ed211b3",
       "tags": ["Electronics"],
       "itemowner": "Qdd5HoEin0OPxNUZcB5sDc7xGHD2",
       "created": "2017-09-19 16:20:17.023582-07",
@@ -200,7 +200,7 @@
       "description":
         "Every problem will definitely look like a nail with this set of well-worn hammers.",
       "imageurl":
-        "https://firebasestorage.googleapis.com/v0/b/boomtown-dfdd8.appspot.com/o/demo-images%2Fhammers.jpg?alt=media",
+        "https://firebasestorage.googleapis.com/v0/b/boomtown-demo.appspot.com/o/hammers.jpg?alt=media&token=3e61df51-9a60-45ce-9561-59669ad8379b",
       "tags": ["Tools"],
       "itemowner": "k721A4pRNggCx7b6ryEE8vx1VIi1",
       "created": "2017-09-18 16:19:29.381919-07",
@@ -213,7 +213,7 @@
       "description":
         "Row, row, your boat. Paddles included. Life is but a dream.",
       "imageurl":
-        "https://firebasestorage.googleapis.com/v0/b/boomtown-dfdd8.appspot.com/o/demo-images%2Fcanoe.jpg?alt=media",
+        "https://firebasestorage.googleapis.com/v0/b/boomtown-demo.appspot.com/o/canoe.jpg?alt=media&token=7dedc7be-1e2c-4d2b-8c81-71bdae93825f",
       "tags": ["Recreational Equipment"],
       "itemowner": "eEvh1WUF5nb5eeUksUQb3Ph0kOU2",
       "created": "2017-09-18 16:18:19.625575-07",
@@ -226,7 +226,7 @@
       "description":
         "Get exercise while having fun in the sun on this super-cool bike.",
       "imageurl":
-        "https://firebasestorage.googleapis.com/v0/b/boomtown-dfdd8.appspot.com/o/demo-images%2Fpurple-bike.jpg?alt=media",
+        "https://firebasestorage.googleapis.com/v0/b/boomtown-demo.appspot.com/o/purple-bike.jpg?alt=media&token=031002ac-b479-44af-a21a-881fc810f164",
       "tags": ["Recreational Equipment"],
       "itemowner": "Qdd5HoEin0OPxNUZcB5sDc7xGHD2",
       "created": "2017-09-18 16:14:03.597363-07",
@@ -238,7 +238,7 @@
       "title": "Leica Camera",
       "description": "Range-finding fun for the whole family.",
       "imageurl":
-        "https://firebasestorage.googleapis.com/v0/b/boomtown-dfdd8.appspot.com/o/demo-images%2Fleica.jpg?alt=media",
+        "https://firebasestorage.googleapis.com/v0/b/boomtown-demo.appspot.com/o/leica.jpg?alt=media&token=345dc2d9-bf67-414d-af37-4e44af534ccd",
       "tags": ["Electronics"],
       "itemowner": "Qdd5HoEin0OPxNUZcB5sDc7xGHD2",
       "created": "2017-09-17 16:12:11.174503-07",
@@ -251,7 +251,7 @@
       "description":
         "Great to have on hand because you never know when you'll need to show Mother Nature who's boss.",
       "imageurl":
-        "https://firebasestorage.googleapis.com/v0/b/boomtown-dfdd8.appspot.com/o/demo-images%2Fchain-saw.jpg?alt=media",
+        "https://firebasestorage.googleapis.com/v0/b/boomtown-demo.appspot.com/o/drone.jpg?alt=media&token=9fed6bfa-e4de-4dab-b147-3f5619388520",
       "tags": ["Tools"],
       "itemowner": "k721A4pRNggCx7b6ryEE8vx1VIi1",
       "created": "2017-09-16 16:11:18.583749-07",
@@ -264,7 +264,7 @@
       "description":
         "Working-condition lawnmower will fulfill all of your grass-cutting needs.",
       "imageurl":
-        "https://firebasestorage.googleapis.com/v0/b/boomtown-dfdd8.appspot.com/o/demo-images%2Flawnmower.jpg?alt=media",
+        "https://firebasestorage.googleapis.com/v0/b/boomtown-demo.appspot.com/o/lawnmower.jpg?alt=media&token=36b785aa-cbb3-4488-a6c8-bc6988be51d0",
       "tags": ["Household Items"],
       "itemowner": "eEvh1WUF5nb5eeUksUQb3Ph0kOU2",
       "created": "2017-09-15 16:06:12.503874-07",

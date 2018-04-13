@@ -1,0 +1,19 @@
+.itemCardListWrapper {
+  width: 100%;
+}
+
+.itemCardWrapper {
+  width: 100%;
+  padding: 1%;
+}
+
+@media only screen and (min-width: 600px) {
+  .itemCardWrapper {
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 960px) {
+  .itemCardWrapper {
+    width: 33%;
+  }
+}

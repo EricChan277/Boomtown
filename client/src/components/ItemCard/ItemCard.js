@@ -10,16 +10,20 @@ import {
 import FlatButton from "material-ui/FlatButton";
 
 const ItemCard = props => {
+  const item = props.itemsData;
   return (
     <Card>
-      <CardHeader title="CardHeader" subtitle="Subtitle" />
-
-      <CardMedia overlay={<CardTitle title="Placeholder Image Title" />}>
-        <img src="http://via.placeholder.com/350x150" alt="" />
+      <CardMedia>
+        <img src={item.imageurl} alt="" />
       </CardMedia>
-      <CardText>Sample Card Text</CardText>
+      <CardHeader
+        title={item.itemowner.fullname}
+        avatar="http://via.placeholder.com/350x150"
+      />
+      <CardTitle title={item.title} />
+      <CardText>{item.description}</CardText>
       <CardActions>
-        <FlatButton label="Sample Button" />
+        <FlatButton label="Borrow" />
       </CardActions>
     </Card>
   );

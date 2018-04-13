@@ -1,7 +1,5 @@
-import React from 'react';
+import React from "react";
 
-const ItemCard {
+const ItemCard = () => {};
 
-}
-
-export default ItemCard;
+export default itemCard;

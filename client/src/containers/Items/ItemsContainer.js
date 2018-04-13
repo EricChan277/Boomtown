@@ -23,7 +23,7 @@ class ItemsContainer extends Component {
         // console.log(itemsObj);
         items = itemsObj[0];
         user = itemsObj[1];
-        items.map((item, itemowner) => {
+        items.map((item, index) => {
           // console.log(item);
           user.map((user, id) => {
             // console.log(user);

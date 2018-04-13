@@ -3,10 +3,15 @@ import ItemCard from "../ItemCard";
 
 const ItemCardList = props => {
   return (
-    <ul>
-      {console.log(props.itemsData)}
-      {/* <ItemCard /> */}
-    </ul>
+    <div>
+      {/* {console.log(props.itemsData)} */}
+      {/* {props.itemsData.map((item, index) => {
+        props.itemsData.forEach(item => {
+          console.log(item);
+        });
+      })} */}
+      <ItemCard />
+    </div>
   );
 };
 

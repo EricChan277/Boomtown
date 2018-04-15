@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import Profile from "./Profile";
 
 class ProfileContainer extends Component {
   render() {
     return (
       <div>
-        <p> Profile </p>
+        <Profile />
       </div>
     );
   }

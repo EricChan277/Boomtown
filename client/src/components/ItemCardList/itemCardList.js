@@ -8,6 +8,7 @@ const ItemCardList = props => {
   return (
     <div className="itemCardListWrapper">
       <Masonry>
+        {console.log(props.itemsData)}
         {props.itemsData.map((item, index) => (
           <div key={index} className="itemCardWrapper">
             <ItemCard itemsData={item} />

@@ -9,12 +9,22 @@ import {
   CardText
 } from "material-ui/Card";
 import FlatButton from "material-ui/FlatButton";
+import Gravatar from "react-gravatar";
+import { Link } from "react-router-dom";
 
 import "./styles.css";
 const Profile = props => {
+  const item = props.itemsData;
+  // console.log(item.itemowner);
   return (
     <Card>
-      <CardHeader avatar="http://via.placeholder.com/350x150" />
+      <CardMedia>
+        <img src={item.imageurl} alt="" />
+      </CardMedia>
+      <CardHeader
+        avatar={<Gravatar email={item.itemowner.email} />}
+        title={item.itemowner.fullname}
+      />
     </Card>
   );
 };

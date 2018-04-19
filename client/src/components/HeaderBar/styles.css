@@ -2,3 +2,17 @@
   width: 100%;
   background-color: white;
 }
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.headerBtnWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  width: 220px;
+}

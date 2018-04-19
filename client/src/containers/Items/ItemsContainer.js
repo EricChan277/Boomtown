@@ -1,48 +1,31 @@
 import React, { Component } from "react";
 import Items from "./Items";
+import { connect } from "react-redux";
+import { getDatafromUrls } from "../../redux/modules/items";
 
 class ItemsContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isLoading: false,
-      itemsData: []
-    };
-  }
-
   componentDidMount() {
-    const urls = ["http://localhost:3000/items", "http://localhost:3000/users"];
-
-    this.setState({ isLoading: true });
-
-    let items = [];
-    let user = [];
-
-    Promise.all(urls.map(url => fetch(url).then(resp => resp.json()))).then(
-      itemsObj => {
-        items = itemsObj[0];
-        user = itemsObj[1];
-        // console.log(items);
-        items.map(item => {
-          // console.log(item);
-          user.map(user => {
-            // console.log(user);
-            if (item.itemowner == user.id) {
-              //   console.log("hello");
-              item.itemowner = user;
-              // console.log(items);
-            }
-          });
-        });
-        this.setState({ isLoading: false, itemsData: items });
-        // console.log(this.state.itemsData);
-      }
-    );
+    this.props.dispatch(getDatafromUrls());
   }
 
   render() {
-    return <Items itemsData={this.state.itemsData} />;
+    return this.props.isLoading ? (
+      <p>Loading...</p>
+    ) : (
+      <Items itemsData={this.props.itemsData.items} />
+    );
   }
 }
 
-export default ItemsContainer;
+const mapStateToProps = state => ({
+  isLoading: state.items.isLoading,
+  itemsData: state.items.itemsData,
+  itemFilters: state.items.itemFilters
+});
+
+export default connect(state => {
+  return {
+    itemsData: state.item,
+    isLoading: state.isLoading
+  };
+})(ItemsContainer);

@@ -17,7 +17,7 @@ class ProfileContainer extends Component {
       <p>Loading...</p>
     ) : (
       <Masonry>
-        <Profile itemsData={this.props.itemsData.items} />
+        <Profile itemsData={this.props.items} />
       </Masonry>
     );
   }

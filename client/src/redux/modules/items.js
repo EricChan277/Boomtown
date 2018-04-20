@@ -7,7 +7,6 @@ const GET_IS_LOADING = "GET_IS_LOADING";
 const FETCH_USERS_ONLY = "FETCH_USERS_ONLY";
 const GET_ITEM_FILTERS = "GET_ITEM_FILTERS";
 const GET_ERROR = "GET_ERROR";
-const GET_TAGS = "GET_TAGS";
 
 export const get_is_loading = isLoading => ({
   type: GET_IS_LOADING,
@@ -27,10 +26,6 @@ export const get_item_filters = filters => ({
 export const get_error = error => ({
   type: GET_ERROR,
   payload: error
-});
-
-export const get_tags = () => ({
-  type: GET_TAGS
 });
 
 export const fetch_users_only = users => ({
@@ -98,6 +93,13 @@ export default (state = initialState, action) => {
     case GET_ERROR: {
       return { ...state, isLoading: false, error: action.payload };
       break;
+    }
+    case GET_ITEM_FILTERS: {
+      let itemFilters = [...state.itemFilters];
+      if (!itemFilters.includes(action.payload)) {
+        itemFilters.push(action.payload);
+      }
+      return { ...state, itemFilters };
     }
     default: {
       return {

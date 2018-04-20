@@ -25,7 +25,7 @@ const mapStateToProps = state => ({
 
 export default connect(state => {
   return {
-    itemsData: state.item,
+    itemsData: state.itemsData,
     isLoading: state.isLoading
   };
 })(ItemsContainer);

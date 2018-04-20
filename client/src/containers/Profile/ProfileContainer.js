@@ -1,51 +1,37 @@
 import React, { Component } from "react";
 import Profile from "./Profile";
 import Masonry from "react-masonry-component";
+import { connect } from "react-redux";
+import {
+  getDatafromUrls
+  // getDatafromProfileUrl
+} from "../../redux/modules/items";
 
 class ProfileContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isLoading: false,
-      itemsData: []
-    };
-  }
-
   componentDidMount() {
-    const urls = ["http://localhost:3000/items", "http://localhost:3000/users"];
-
-    this.setState({ isLoading: true });
-
-    let items = [];
-    let user = [];
-
-    Promise.all(urls.map(url => fetch(url).then(resp => resp.json()))).then(
-      itemsObj => {
-        items = itemsObj[0];
-        user = itemsObj[1];
-        items.map(item => {
-          user.map(user => {
-            if (item.itemowner == user.id) {
-              item.itemowner = user;
-            }
-          });
-        });
-        this.setState({ isLoading: false, itemsData: items });
-      }
-    );
+    this.props.dispatch(getDatafromUrls());
   }
 
   render() {
-    return (
+    return this.props.isLoading ? (
+      <p>Loading...</p>
+    ) : (
       <Masonry>
-        {this.state.itemsData.map((item, index) => (
-          <div key={index} className="profile-card-wrapper">
-            <Profile itemsData={item} />
-          </div>
-        ))}
+        <Profile itemsData={this.props.itemsData.items} />
       </Masonry>
     );
   }
 }
 
-export default ProfileContainer;
+const mapStateToProps = state => ({
+  isLoading: state.items.isLoading,
+  itemsData: state.items.itemsData,
+  itemFilters: state.items.itemFilters
+});
+
+export default connect(state => {
+  return {
+    itemsData: state.item,
+    isLoading: state.isLoading
+  };
+})(ProfileContainer);

@@ -1,12 +1,9 @@
 import React from "react";
 import "./styles.css";
 import AppBar from "material-ui/AppBar";
-import SelectField from "material-ui/SelectField";
-import MenuItem from "material-ui/MenuItem";
+import TagFilterField from "../TagFilterField";
+import { Link } from "react-router-dom";
 import RaisedButton from "material-ui/RaisedButton";
-import IconButton from "material-ui/IconButton";
-
-import ActionHome from "material-ui/svg-icons/action/home";
 import Logo from "../../images/boomtown-logo.svg";
 
 const HeaderBar = props => {
@@ -22,22 +19,16 @@ const HeaderBar = props => {
       }}
       iconElementLeft={
         <div className="titleContainer">
-          <img
-            src={Logo}
-            style={{
-              height: "40px"
-            }}
-          />
-
-          <SelectField floatingLabelText="Search by tag here">
-            <MenuItem value={2} primaryText="Electronics" />
-            <MenuItem value={3} primaryText="Household Items" />
-            <MenuItem value={4} primaryText="Musical Instruments" />
-            <MenuItem value={5} primaryText="Physical Media" />
-            <MenuItem value={6} primaryText="Recreational Equipment" />
-            <MenuItem value={7} primaryText="Sporting Goods" />
-            <MenuItem value={8} primaryText="Tools" />
-          </SelectField>
+          <Link to={"/"}>
+            <img
+              src={Logo}
+              alt=""
+              style={{
+                height: "40px"
+              }}
+            />
+          </Link>
+          <TagFilterField />
         </div>
       }
       iconElementRight={

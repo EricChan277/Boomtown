@@ -11,13 +11,16 @@ import muiTheme from "./config/theme";
 
 import Layout from "./components/Layout";
 import Routes from "./Routes";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const Boomtown = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
     <Provider store={store}>
-      <Layout>
-        <Routes />
-      </Layout>
+      <Router>
+        <Layout>
+          <Routes />
+        </Layout>
+      </Router>
     </Provider>
   </MuiThemeProvider>
 );

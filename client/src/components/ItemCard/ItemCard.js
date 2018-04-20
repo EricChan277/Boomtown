@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 
 const ItemCard = props => {
   const item = props.itemsData;
-  // console.log(item);
   return (
     <Card>
       <CardMedia>
@@ -21,6 +20,7 @@ const ItemCard = props => {
       </CardMedia>
       <Link to={`/profile/${item.itemowner.id}`}>
         <CardHeader
+          style={{ borderRadius: "50%" }}
           avatar={<Gravatar email={item.itemowner.email} />}
           title={item.itemowner.fullname}
         />

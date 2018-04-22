@@ -1,29 +1,27 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import registerServiceWorker from "./registerServiceWorker";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import { Provider } from "react-redux";
-import store from "./redux/store";
-
-import "./index.css";
-import muiTheme from "./config/theme";
-
-import Layout from "./components/Layout";
-import Routes from "./Routes";
-import { BrowserRouter as Router } from "react-router-dom";
+import registerServiceWorker from './registerServiceWorker';
+import store from './redux/store';
+import './index.css';
+import muiTheme from './config/theme';
+import Layout from './components/Layout';
+import Routes from './Routes';
 
 const Boomtown = () => (
-  <MuiThemeProvider muiTheme={muiTheme}>
-    <Provider store={store}>
-      <Router>
-        <Layout>
-          <Routes />
-        </Layout>
-      </Router>
-    </Provider>
-  </MuiThemeProvider>
+    <MuiThemeProvider muiTheme={muiTheme}>
+        <Provider store={store}>
+            <Router>
+                <Layout>
+                    <Routes />
+                </Layout>
+            </Router>
+        </Provider>
+    </MuiThemeProvider>
 );
 
-ReactDOM.render(<Boomtown />, document.getElementById("root"));
+ReactDOM.render(<Boomtown />, document.getElementById('root'));
 registerServiceWorker();

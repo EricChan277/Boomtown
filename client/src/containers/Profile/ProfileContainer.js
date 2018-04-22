@@ -1,37 +1,33 @@
-import React, { Component } from "react";
-import Profile from "./Profile";
-import Masonry from "react-masonry-component";
-import { connect } from "react-redux";
-import {
-  getDatafromUrls
-  // getDatafromProfileUrl
-} from "../../redux/modules/items";
+import React, { Component } from 'react';
+import Masonry from 'react-masonry-component';
+import { connect } from 'react-redux';
+
+import { getDatafromUrls } from '../../redux/modules/items';
+import Profile from './Profile';
 
 class ProfileContainer extends Component {
-  componentDidMount() {
-    this.props.dispatch(getDatafromUrls());
-  }
+    componentDidMount() {
+        this.props.dispatch(getDatafromUrls());
+    }
 
-  render() {
-    return this.props.isLoading ? (
-      <p>Loading...</p>
-    ) : (
-      <Masonry>
-        <Profile itemsData={this.props.items} />
-      </Masonry>
-    );
-  }
+    render() {
+        return this.props.isLoading ? (
+            <p>Loading...</p>
+        ) : (
+            <Masonry>
+                <Profile itemsData={this.props.items} />
+            </Masonry>
+        );
+    }
 }
 
 const mapStateToProps = state => ({
-  isLoading: state.items.isLoading,
-  itemsData: state.items.itemsData,
-  itemFilters: state.items.itemFilters
+    isLoading: state.items.isLoading,
+    itemsData: state.items.itemsData,
+    itemFilters: state.items.itemFilters
 });
 
-export default connect(state => {
-  return {
+export default connect(state => ({
     itemsData: state.item,
     isLoading: state.isLoading
-  };
-})(ProfileContainer);
+}))(ProfileContainer);

@@ -1,6 +1,6 @@
 export default {
-  Card: {
-    display: "flex",
-    width: "20px"
-  }
+    Card: {
+        display: 'flex',
+        width: '20px'
+    }
 };

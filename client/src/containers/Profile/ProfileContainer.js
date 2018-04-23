@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Masonry from 'react-masonry-component';
 import { connect } from 'react-redux';
 
+import Loader from '../../components/Loader';
 import { getDatafromUrls } from '../../redux/modules/items';
 import Profile from './Profile';
 
@@ -12,20 +13,15 @@ class ProfileContainer extends Component {
 
     render() {
         return this.props.isLoading ? (
-            <p>Loading...</p>
+            <Loader />
         ) : (
             <Masonry>
                 <Profile itemsData={this.props.items} />
+                {/* {console.log('hello')} */}
             </Masonry>
         );
     }
 }
-
-const mapStateToProps = state => ({
-    isLoading: state.items.isLoading,
-    itemsData: state.items.itemsData,
-    itemFilters: state.items.itemFilters
-});
 
 export default connect(state => ({
     itemsData: state.item,

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import Loader from '../../components/Loader';
 import { getDatafromUrls } from '../../redux/modules/items';
 import Items from './Items';
 
@@ -23,7 +25,7 @@ class ItemsContainer extends Component {
 
     render() {
         return this.props.isLoading ? (
-            <p>Loading...</p>
+            <Loader />
         ) : (
             <Items itemsData={this.filterItems(this.props.itemsData)} />
         );

@@ -1,8 +1,6 @@
 // ****************** Action Defining ***************************/
 
-/* _________________Item and Profile fetching _____________________ */
 const FETCH_ITEMS = 'FETCH_ITEMS';
-
 const GET_IS_LOADING = 'GET_IS_LOADING';
 const FETCH_USERS_ONLY = 'FETCH_USERS_ONLY';
 const GET_ITEM_FILTERS = 'GET_ITEM_FILTERS';

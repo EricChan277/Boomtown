@@ -15,7 +15,7 @@ import {
 import './styles.css';
 const Profile = props => {
     const item = props.itemsData;
-    // console.log(item);
+    console.log(props.itemsData);
     return (
         <Card>
             {/* <CardHeader

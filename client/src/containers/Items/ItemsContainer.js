@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Loader from '../../components/Loader';
 import { getDatafromUrls } from '../../redux/modules/items';
@@ -31,6 +32,12 @@ class ItemsContainer extends Component {
         );
     }
 }
+
+ItemsContainer.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    isLoading: PropTypes.object.isRequired,
+    itemsData: PropTypes.array.isRequired
+};
 
 export default connect(state => ({
     itemsData: state.itemsData,

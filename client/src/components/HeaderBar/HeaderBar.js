@@ -3,6 +3,7 @@ import AppBar from 'material-ui/AppBar';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Logo from '../../images/boomtown-logo.svg';
 import { getDatafromUrls } from '../../redux/modules/items';
@@ -85,6 +86,11 @@ class HeaderBar extends Component {
         );
     }
 }
+
+HeaderBar.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    itemsData: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
     itemsData: state.itemsData

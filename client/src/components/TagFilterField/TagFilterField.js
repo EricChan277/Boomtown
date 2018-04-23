@@ -25,4 +25,9 @@ const TagFilterField = ({ tags, dispatch }) => {
     );
 };
 
+TagFilterField.propTypes = {
+    tags: PropTypes.array.isRequired,
+    dispatch: PropTypes.func.isRequired
+};
+
 export default connect()(TagFilterField);

@@ -44,16 +44,19 @@ Start the json-server before running yarn start in the client folder, as the jso
 
 What is React?
 
-        React is a JavaScript library used to dynamically render content quickly and efficiently.
+        React is a JavaScript library used to
+        dynamically render content quickly and efficiently.
 
 ### Redux: [Link to Redux Documentation](https://redux.js.org/)
 
 What is Redux?
 
-        Redux is a JavaScript library used for managing states in a manner that can be easily accessed by any components by being a global store.
+        Redux is a JavaScript library used for
+        managing states in a manner that can be easily accessed by any components by being a global store.
 
 ### Material-UI: [Link to Material-UI Documentation](http://www.material-ui.com/#/)
 
 What is Material-UI?
 
-        Material-UI is an easy to use interface plug-in that utilizes React to generate elements that will be displayed on screen.
+        Material-UI is an easy to use interface plug-in
+        that utilizes React to generate elements that will be displayed on screen.

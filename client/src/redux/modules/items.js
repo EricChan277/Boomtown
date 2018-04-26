@@ -43,7 +43,7 @@ const initialState = {
 
 /* ____________________ Item Thunk ______________________ */
 export const getDatafromUrls = () => dispatch => {
-    const urls = ['http://localhost:3000/items', 'http://localhost:3000/users'];
+    const urls = ['http://localhost:3001/items', 'http://localhost:3001/users'];
 
     const combineUrlData = userAndItemData => {
         userAndItemData[0].map(item => {
@@ -63,7 +63,7 @@ export const getDatafromUrls = () => dispatch => {
 
 /* _________________Profile Thunk________________________ */
 export const getDatafromProfileUrl = () => dispatch => {
-    const url = ['http://localhost:3000/users'];
+    const url = ['http://localhost:3001/users'];
     Promise.all(
         url.map(userUrl => fetch(userUrl).then(resp => resp.json()))
     ).then(responses =>

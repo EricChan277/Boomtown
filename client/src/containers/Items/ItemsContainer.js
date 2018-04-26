@@ -25,6 +25,7 @@ class ItemsContainer extends Component {
     };
 
     render() {
+        console.log(this.props);
         return this.props.isLoading ? (
             <Loader />
         ) : (
@@ -33,11 +34,11 @@ class ItemsContainer extends Component {
     }
 }
 
-ItemsContainer.propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    isLoading: PropTypes.object.isRequired,
-    itemsData: PropTypes.array.isRequired
-};
+// ItemsContainer.propTypes = {
+//     dispatch: PropTypes.func.isRequired,
+//     isLoading: PropTypes.object.isRequired,
+//     itemsData: PropTypes.array.isRequired
+// };
 
 export default connect(state => ({
     itemsData: state.itemsData,

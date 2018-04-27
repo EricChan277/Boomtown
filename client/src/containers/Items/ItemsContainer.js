@@ -11,6 +11,7 @@ import Items from './Items';
 const fetchItems = gql`
     query {
         items {
+            id
             title
             description
             imageurl

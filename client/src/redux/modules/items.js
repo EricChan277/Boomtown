@@ -2,7 +2,6 @@
 
 const FETCH_ITEMS = 'FETCH_ITEMS';
 const GET_IS_LOADING = 'GET_IS_LOADING';
-const FETCH_USERS_ONLY = 'FETCH_USERS_ONLY';
 const GET_ITEM_FILTERS = 'GET_ITEM_FILTERS';
 const GET_ERROR = 'GET_ERROR';
 
@@ -24,11 +23,6 @@ export const getItemFilters = filters => ({
 export const getError = error => ({
     type: GET_ERROR,
     payload: error
-});
-
-export const fetchUsersOnly = users => ({
-    type: FETCH_USERS_ONLY,
-    payload: users
 });
 
 // ****************** Setting initial state ***************************/
@@ -61,16 +55,6 @@ export const getDatafromUrls = () => dispatch => {
         .catch(error => dispatch(getError(error)));
 };
 
-/* _________________Profile Thunk________________________ */
-export const getDatafromProfileUrl = () => dispatch => {
-    const url = ['http://localhost:3001/users'];
-    Promise.all(
-        url.map(userUrl => fetch(userUrl).then(resp => resp.json()))
-    ).then(responses =>
-        dispatch(fetchUsersOnly(getDatafromProfileUrl(responses)))
-    );
-};
-
 //* ***************************** Reducers*********************************************/
 export default (state = initialState, action) => {
     switch (action.type) {
@@ -80,10 +64,6 @@ export default (state = initialState, action) => {
     case FETCH_ITEMS: {
         const items = action.payload;
         return { ...state, items, isLoading: false, error: '' };
-    }
-    case FETCH_USERS_ONLY: {
-        const users = action.payload;
-        return { ...state, users, isLoading: false, error: '' };
     }
     case GET_ERROR: {
         return { ...state, isLoading: false, error: action.payload };

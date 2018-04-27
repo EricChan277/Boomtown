@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 const apiUrl = 'http://localhost:3001';
-
+let createDate = new Date();
 const resolveFunctions = {
   Query: {
     items(root) {
@@ -25,12 +25,34 @@ const resolveFunctions = {
     itemowner({ itemowner }) {
       return fetch(`${apiUrl}/users/${itemowner}`).then(resp => resp.json());
     },
-
     async borrower({ borrower }) {
       const user = await fetch(`${apiUrl}/users/${borrower}`);
       const json = await user.json();
       if (!json.id) return null;
       return json;
+    }
+  },
+  // New Item mutation
+  Mutation: {
+    addItem(root, item) {
+      const newItem = {
+        title: item.title,
+        description: item.description,
+        imageurl: item.imageurl,
+        tags: item.tags,
+        itemowner: item.itemowner,
+        created: item.createDate,
+        available: item.available,
+        borrower: item.borrower
+      };
+      return fetch(`${apiUrl}/items`, {
+        body: JSON.stringify(newItem),
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        }
+      }).then(resp => resp.json());
+      return newItem;
     }
   },
   User: {

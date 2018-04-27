@@ -44,7 +44,10 @@ class ProfileContainer extends Component {
                     if (error) return <p>Error!</p>;
 
                     return (
-                        <div className="profileCardWrapper">
+                        <div
+                            className="profileCardWrapper"
+                            style={{ width: '100%' }}
+                        >
                             <Profile profileData={data.user} />
                             <ItemCardList itemsData={data.user.owneditems} />
                         </div>

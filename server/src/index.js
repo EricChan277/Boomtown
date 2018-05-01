@@ -1,14 +1,16 @@
 import express from 'express';
-import bodyParser from 'body-parser';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import cors from 'cors';
-import schema from './schema';
+
+import initConfigs from './configs';
+import initAPI from './api';
 
 const app = express();
 const PORT = 3333;
 
 app.use('*', cors());
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+
+initConfigs(app);
+initAPI(app);
 
 app.listen(PORT, err => {
   if (err) {
@@ -19,10 +21,3 @@ app.listen(PORT, err => {
     );
   }
 });
-
-app.use(
-  '/graphiql',
-  graphiqlExpress({
-    endpointURL: '/graphql'
-  })
-);

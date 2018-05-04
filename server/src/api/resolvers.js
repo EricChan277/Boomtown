@@ -21,7 +21,6 @@ export default function({ jsonResources }) {
     Item: {
       // Add to loader
       itemowner({ itemowner }, args, context) {
-        // return fetch(`${apiUrl}/users/${itemowner}`).then(resp => resp.json());
         return context.loaders.GetUsers.load(itemowner);
       },
       async borrower({ borrower }) {

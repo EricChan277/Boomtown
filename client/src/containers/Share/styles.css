@@ -1,0 +1,38 @@
+/* .shareContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-wrapper {
+  display: flex;
+  border: solid 1px black;
+}
+
+.form-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid black;
+  padding: 10px;
+}
+
+.form-right {
+  padding: 10px;
+}
+.form-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px;
+}
+.catagory {
+  overflow: none;
+}
+
+button {
+  border-radius: 2px;
+} */

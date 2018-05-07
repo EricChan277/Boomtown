@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-export default function({ jsonResources }) {
+export default function({ jsonResources, firebaseResources, pgResources }) {
   const apiUrl = 'http://localhost:3001';
   let createDate = new Date();
   return {
@@ -9,7 +9,7 @@ export default function({ jsonResources }) {
         return jsonResources.items();
       },
       users(root) {
-        return jsonResources.users();
+        return getUsers();
       },
       item(root, { id }) {
         return jsonResources.item(id);

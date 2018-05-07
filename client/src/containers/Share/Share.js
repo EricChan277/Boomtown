@@ -1,35 +1,108 @@
 import React, { Component } from 'react';
 import { Form, Field } from 'react-final-form';
+import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
 
-import { Step, Stepper, StepLabel, StepContent } from 'material-ui/Stepper';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import { Step, Stepper, StepButton, StepContent } from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 
-import './styles.css';
+import ItemCard from '../../components/ItemCard';
 
-class Share extends Component {
-    state = {
-        finished: false,
-        stepIndex: 0,
-        value: []
-    };
-    onSubmit = values => {
-        console.log(values);
-    };
-
-    validate(...args) {
-        console.log('Validating:', args);
+const styles = {
+    textbox: {
+        color: 'grey'
     }
+};
+
+const addItemMutation = gql`
+    mutation addItem(
+        $title: String!
+        $description: String!
+        $imageurl: String!
+        $tags: [String]!
+        $created: String!
+        $available: Boolean!
+        $itemowner: String!
+        $borrower: String
+    ) {
+        addItem(
+            title: $title
+            description: $description
+            imageurl: $imageurl
+            tags: $tags
+            created: $created
+            available: $available
+            itemowner: $itemowner
+            borrower: $borrower
+        ) {
+            title
+            description
+        }
+    }
+`;
+
+const placeholderData = {
+    imageurl: 'http://lorempixel.com/output/technics-q-c-400-400-6.jpg',
+    title: 'Headphones',
+    itemowner: {
+        id: 'DYjqnBenm2Xf2TzpczVUfgpYcZa2',
+        bio: 'Test Item, please ignore',
+        fullname: 'Mack',
+        email: 'mackenzie@redacademy.com'
+    },
+    created: new Date(),
+    tags: ['tag1'],
+    description: 'test'
+};
+
+const tags = [
+    { id: 1, tag: 'Electronics' },
+    { id: 2, tag: 'Household Items' },
+    { id: 3, tag: 'Musical Instruments' },
+    { id: 4, tag: 'Physical Media' },
+    { id: 5, tag: 'Recreational Equipment' },
+    { id: 6, tag: 'Sporting Goods' },
+    { id: 7, tag: 'Tools' }
+];
+
+export default class Share extends Component {
+    state = {
+        stepIndex: 0,
+        selectedTags: [],
+        itemCardData: {
+            imageurl: '',
+            title: '',
+            itemowner: {
+                id: 1,
+                bio: '',
+                fullname: '',
+                email: ''
+            },
+            created: new Date(),
+            tags: [],
+            description: ''
+        }
+    };
+
+    onSubmit = values => {
+        console.log('Form was submitted', values);
+    };
+
+    validate = (...args) => {
+        console.log('Validating:', args);
+    };
+
+    required = value => (value ? undefined : 'Required');
 
     handleNext = () => {
         const { stepIndex } = this.state;
-        this.setState({
-            stepIndex: stepIndex + 1,
-            finished: stepIndex >= 2
-        });
+        if (stepIndex < 3) {
+            this.setState({ stepIndex: stepIndex + 1 });
+        }
     };
 
     handlePrev = () => {
@@ -39,14 +112,21 @@ class Share extends Component {
         }
     };
 
+    handleFilter(tag) {
+        const { selectedTags } = this.state;
+        if (selectedTags.indexOf(tag) > -1) {
+            selectedTags.splice(selectedTags.indexOf(tag), 1);
+            this.setState({ selectedTags: [...selectedTags] });
+        } else {
+            this.setState({ selectedTags: [...selectedTags, tag] });
+        }
+    }
+
     renderStepActions(step) {
-        const { stepIndex } = this.state;
-        const handleChange = (event, index, values) =>
-            this.setState({ values });
         return (
             <div style={{ margin: '12px 0' }}>
                 <RaisedButton
-                    label={stepIndex === 3 ? 'Finish' : 'Next'}
+                    label="Next"
                     disableTouchRipple
                     disableFocusRipple
                     primary
@@ -56,7 +136,6 @@ class Share extends Component {
                 {step > 0 && (
                     <FlatButton
                         label="Back"
-                        disabled={stepIndex === 0}
                         disableTouchRipple
                         disableFocusRipple
                         onClick={this.handlePrev}
@@ -67,115 +146,254 @@ class Share extends Component {
     }
 
     render() {
-        const { finished, stepIndex } = this.state;
-
+        const { stepIndex } = this.state;
         return (
-            <div style={{ maxWidth: 380, maxHeight: 400, margin: 'auto' }}>
-                <Stepper activeStep={stepIndex} orientation="vertical">
-                    <Step>
-                        <StepLabel>Add an Image</StepLabel>
-                        <StepContent>
-                            <p>
-                                We live in a visual culture. <br />
-                                Upload an image of the item you're sharing.
-                            </p>
-                            <input
-                                type="file"
-                                required
-                                accept=".png, .jpg, jpeg, .gif "
-                            />
-                            {this.renderStepActions(0)}
-                        </StepContent>
-                    </Step>
-                    <Step>
-                        <StepLabel>Add a Title & Description</StepLabel>
-                        <StepContent>
-                            <p>
-                                Folks need to know what you're sharing. Give
-                                them a clue by adding a title & description.
-                            </p>
-                            <TextField
-                                type="text"
-                                floatingLabelText="Title"
-                                errorText="This field is required"
-                            />
-                            <TextField
-                                type="text"
-                                floatingLabelText="Description"
-                                errorText="This field is required"
-                                multiLine
-                                rows={3}
-                            />
+            <div>
+                <div>
+                    <ItemCard itemsData={placeholderData} />
+                </div>
+                <Form
+                    onSubmit={values => this.onSubmit(values)}
+                    validate={this.validate.bind(this)}
+                    render={({ handleSubmit, values }) => (
+                        <Mutation mutation={addItemMutation}>
+                            {(addItem, { data }) => (
+                                <form
+                                    onSubmit={e => {
+                                        e.preventDefault();
+                                        handleSubmit(values);
+                                        addItem({
+                                            variables: {
+                                                ...values,
+                                                created: new Date(),
+                                                available: true,
+                                                tags: this.state.selectedTags.map(
+                                                    tag => tag.tagid.toString()
+                                                ),
+                                                itemowner:
+                                                    'eEvh1WUF5nb5eeUksUQb3Ph0kOU2'
+                                            }
+                                        });
+                                    }}
+                                >
+                                    <Stepper
+                                        activeStep={stepIndex}
+                                        linear={false}
+                                        orientation="vertical"
+                                    >
+                                        <Step>
+                                            <StepButton
+                                                onClick={() =>
+                                                    this.setState({
+                                                        stepIndex: 0
+                                                    })
+                                                }
+                                            >
+                                                Add an Image
+                                            </StepButton>
+                                            <StepContent>
+                                                <label name="image">
+                                                    We live in a visual culture.
+                                                    Upload an image of the item
+                                                    you're sharing.
+                                                </label>
+                                                <Field
+                                                    name="imageurl"
+                                                    validate={this.required.bind(
+                                                        this
+                                                    )}
+                                                >
+                                                    {({ input, meta }) => {
+                                                        meta.touched &&
+                                                            meta.error && (
+                                                            <span>
+                                                                {meta.error}
+                                                            </span>
+                                                        );
+                                                        return (
+                                                            <input
+                                                                type="file"
+                                                                accept="image/*"
+                                                                {...input}
+                                                                required
+                                                            />
+                                                        );
+                                                    }}
+                                                </Field>
+                                                {this.renderStepActions(0)}
+                                            </StepContent>
+                                        </Step>
+                                        <Step>
+                                            <StepButton
+                                                onClick={() =>
+                                                    this.setState({
+                                                        stepIndex: 1
+                                                    })
+                                                }
+                                            >
+                                                Add a Title & Description
+                                            </StepButton>
+                                            <StepContent>
+                                                <p className="title-blurb">
+                                                    Folks need to know what
+                                                    you're sharing. Give them a
+                                                    clue by adding a title &
+                                                    description.
+                                                </p>
+                                                <Field
+                                                    name="title"
+                                                    validate={this.required.bind(
+                                                        this
+                                                    )}
+                                                >
+                                                    {({ input, meta }) => {
+                                                        meta.touched &&
+                                                            meta.error && (
+                                                            <span>
+                                                                {meta.error}
+                                                            </span>
+                                                        );
+                                                        console.log(input);
+                                                        return (
+                                                            <TextField
+                                                                floatingLabelText="Title"
+                                                                floatingLabelFixed
+                                                                required
+                                                                {...input}
+                                                                hintText="Title"
+                                                                fullWidth
+                                                                underlineFocusStyle={{
+                                                                    color:
+                                                                        'blue'
+                                                                }}
+                                                            />
+                                                        );
+                                                    }}
+                                                </Field>
 
-                            {this.renderStepActions(1)}
-                        </StepContent>
-                    </Step>
+                                                <Field
+                                                    name="description"
+                                                    validate={this.required.bind(
+                                                        this
+                                                    )}
+                                                >
+                                                    {({ input, meta }) => {
+                                                        meta.touched &&
+                                                            meta.error && (
+                                                            <span>
+                                                                {meta.error}
+                                                            </span>
+                                                        );
+                                                        return (
+                                                            <TextField
+                                                                required
+                                                                {...input}
+                                                                floatingLabelText="Description"
+                                                                floatingLabelFixed
+                                                                fullWidth
+                                                                hintText="Description"
+                                                                multiLine
+                                                                rows={4}
+                                                                className="textField"
+                                                            />
+                                                        );
+                                                    }}
+                                                </Field>
+                                                {this.renderStepActions(1)}
+                                            </StepContent>
+                                        </Step>
 
-                    <Step>
-                        <StepLabel>Categorize your Item</StepLabel>
-                        <StepContent>
-                            <p>
-                                To share an item, you'll need to add it to our
-                                list of categories. You can select multiple
-                                categories.
-                            </p>
-
-                            <SelectField
-                                value={this.state.value}
-                                multiple
-                                hintText="Select some catagories"
-                                onChange={this.handleChange}
-                                name="tags"
-                            >
-                                <MenuItem
-                                    value={1}
-                                    label="electronics"
-                                    primaryText="Electronics"
-                                />
-                                <MenuItem
-                                    value={2}
-                                    label="household items"
-                                    primaryText="Household Items"
-                                />
-                                <MenuItem
-                                    value={3}
-                                    label="musical instruments"
-                                    primaryText="Musical Instruments"
-                                />
-                                <MenuItem
-                                    value={4}
-                                    label="physical media"
-                                    primaryText="Physical Media"
-                                />
-                                <MenuItem
-                                    value={5}
-                                    label="recreational equipment"
-                                    primaryText="Recreational Equipment"
-                                />
-                                <MenuItem
-                                    value={5}
-                                    label="tools"
-                                    primaryText="Tools"
-                                />
-                            </SelectField>
-
-                            {this.renderStepActions(1)}
-                        </StepContent>
-                    </Step>
-                    <Step>
-                        <StepLabel>Confirm Things!</StepLabel>
-                        <StepContent>
-                            <p>
-                                Great! If you're happy with everything, tap the
-                                button.
-                            </p>
-                            {this.renderStepActions(2)}
-                        </StepContent>
-                    </Step>
-                </Stepper>
+                                        <Step>
+                                            <StepButton
+                                                onClick={() =>
+                                                    this.setState({
+                                                        stepIndex: 2
+                                                    })
+                                                }
+                                            >
+                                                Categorize your Item
+                                            </StepButton>
+                                            <StepContent>
+                                                <label name="tags">
+                                                    To share an item, you'll add
+                                                    it to our list of
+                                                    categories. You can select
+                                                    multiple categories.
+                                                </label>
+                                                <Field
+                                                    name="tags"
+                                                    validate={this.required.bind(
+                                                        this
+                                                    )}
+                                                >
+                                                    {({ input }) => (
+                                                        <SelectField
+                                                            multiple
+                                                            value="tags"
+                                                            hintText="Select Category Tags"
+                                                            className="select-area"
+                                                            {...input}
+                                                            onChange={(
+                                                                event,
+                                                                index,
+                                                                value
+                                                            ) =>
+                                                                this.handleFilter(
+                                                                    value[0]
+                                                                )
+                                                            }
+                                                        >
+                                                            {tags.map(tag => (
+                                                                <MenuItem
+                                                                    insetChildren
+                                                                    key={
+                                                                        tag.tagid
+                                                                    }
+                                                                    value={tag}
+                                                                    primaryText={
+                                                                        tag.tag
+                                                                    }
+                                                                    checked={
+                                                                        this.state.selectedTags.indexOf(
+                                                                            tag
+                                                                        ) > -1
+                                                                    }
+                                                                />
+                                                            ))}
+                                                        </SelectField>
+                                                    )}
+                                                </Field>
+                                                {this.renderStepActions(2)}
+                                            </StepContent>
+                                        </Step>
+                                        <Step>
+                                            <StepButton
+                                                onClick={() =>
+                                                    this.setState({
+                                                        stepIndex: 3
+                                                    })
+                                                }
+                                            >
+                                                Confirm Things!
+                                            </StepButton>
+                                            <StepContent>
+                                                <label>
+                                                    Great! If you're happy with
+                                                    everything, tap the button.
+                                                </label>
+                                                <button type="submit">
+                                                    Submit
+                                                </button>
+                                                {this.renderStepActions(3)}
+                                            </StepContent>
+                                        </Step>
+                                    </Stepper>
+                                </form>
+                            )}
+                        </Mutation>
+                    )}
+                />
             </div>
         );
     }
 }
-
-export default Share;

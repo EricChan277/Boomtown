@@ -12,7 +12,7 @@ export default function(app) {
       throw err;
     }
 
-    console.log(res.rows);
+    // console.log(res.rows);
   });
 
   return {};

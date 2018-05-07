@@ -12,6 +12,8 @@ import Gravatar from 'react-gravatar';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import styles from './styles';
+
 const ItemCard = props => {
     const item = props.itemsData;
     return (
@@ -22,14 +24,24 @@ const ItemCard = props => {
             <Link to={`/profile/${item.itemowner.id}`}>
                 <CardHeader
                     style={{ borderRadius: '50%' }}
-                    avatar={<Gravatar email={item.itemowner.email} />}
+                    avatar={
+                        <Gravatar
+                            style={styles.avatar}
+                            email={item.itemowner.email}
+                        />
+                    }
                     title={item.itemowner.fullname}
                 />
             </Link>
             <CardTitle title={item.title} />
             <CardText>{item.description}</CardText>
             <CardActions>
-                <FlatButton label="Borrow" />
+                <FlatButton
+                    backgroundColor={'black'}
+                    hoverColor={'grey'}
+                    labelStyle={styles.borrowBtn}
+                    label="Borrow"
+                />
             </CardActions>
         </Card>
     );

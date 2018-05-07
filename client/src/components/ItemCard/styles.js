@@ -1,6 +1,8 @@
 export default {
-    Card: {
-        display: 'flex',
-        width: '20px'
+    avatar: {
+        borderRadius: '100%'
+    },
+    borrowBtn: {
+        color: 'white'
     }
 };

@@ -3,10 +3,8 @@ import DataLoader from 'dataloader';
 
 export default function Loaders({ jsonResources }) {
   return {
-    UserOwnedItems: new DataLoader(
-      ids => Promise.all(ids.map(id => jsonResources.item(id)))
-
-      // other data loaders go here...
+    UserOwnedItems: new DataLoader(ids =>
+      Promise.all(ids.map(id => jsonResources.item(id)))
     ),
     GetUsers: new DataLoader(ids =>
       Promise.all(ids.map(id => jsonResources.user(id)))

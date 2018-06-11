@@ -1,4 +1,4 @@
-/* .shareContainer {
+.shareContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +35,7 @@
 
 button {
   border-radius: 2px;
-} */
-/* textField {
+}
+textField {
   color: blue;
-} */
+}

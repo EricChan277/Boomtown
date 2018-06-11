@@ -12,12 +12,6 @@ import TextField from 'material-ui/TextField';
 
 import ItemCard from '../../components/ItemCard';
 
-const styles = {
-    textbox: {
-        color: 'grey'
-    }
-};
-
 const addItemMutation = gql`
     mutation addItem(
         $title: String!
@@ -148,9 +142,13 @@ export default class Share extends Component {
     render() {
         const { stepIndex } = this.state;
         return (
-            <div>
-                <div>
-                    <ItemCard itemsData={placeholderData} />
+            <div
+                style={{
+                    display: 'flex'
+                }}
+            >
+                <div style={{ padding: 15 }}>
+                    <ItemCard itemsData={this.state.itemCardData} />
                 </div>
                 <Form
                     onSubmit={values => this.onSubmit(values)}
@@ -168,7 +166,7 @@ export default class Share extends Component {
                                                 created: new Date(),
                                                 available: true,
                                                 tags: this.state.selectedTags.map(
-                                                    tag => tag.tagid.toString()
+                                                    tag => tag.id.toString()
                                                 ),
                                                 itemowner:
                                                     'eEvh1WUF5nb5eeUksUQb3Ph0kOU2'
@@ -253,7 +251,7 @@ export default class Share extends Component {
                                                                 {meta.error}
                                                             </span>
                                                         );
-                                                        console.log(input);
+                                                        // console.log(input);
                                                         return (
                                                             <TextField
                                                                 floatingLabelText="Title"
@@ -347,7 +345,7 @@ export default class Share extends Component {
                                                                 <MenuItem
                                                                     insetChildren
                                                                     key={
-                                                                        tag.tagid
+                                                                        tag.id
                                                                     }
                                                                     value={tag}
                                                                     primaryText={

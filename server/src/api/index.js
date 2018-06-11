@@ -17,8 +17,8 @@ export default function(app) {
 
   const resolvers = createResolvers({
     firebaseResources,
-    pgResources,
-    jsonResources
+    pgResources
+    // jsonResources
   });
 
   const schema = makeExecutableSchema({
@@ -33,7 +33,7 @@ export default function(app) {
       schema,
       context: {
         loaders: createLoaders({
-          jsonResources,
+          // jsonResources,
           pgResources,
           firebaseResources
         })

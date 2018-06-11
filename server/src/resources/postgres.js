@@ -7,13 +7,78 @@ export default function(app) {
     database: app.get('PGDATABASE'),
     password: app.get('PGPASSWORD')
   });
-  pool.query('SELECT * FROM items', (err, res) => {
-    if (err) {
-      throw err;
+  return {
+    items() {
+      return pool
+        .query(
+          `SELECT
+                          items.id,
+                        items.title,
+                        items.itemowner,
+                        items.imageurl,
+                        items.description,
+                        items.created,
+                        items.borrower,
+                        array_agg(tags.id) AS tags
+                            FROM items
+                            RIGHT OUTER JOIN itemtags
+                                ON itemtags.itemid = items.id
+                            INNER JOIN tags
+                                ON tags.id = itemtags.tagid
+                            GROUP BY items.id
+                    `
+        )
+        .then(res => res.rows);
+    },
+    getItem(id) {
+      return pool
+        .query(`SELECT * FROM items WHERE id = ${id}`)
+        .then(resp => resp.rows[0]);
+    },
+    tagField() {
+      return pool.query(`SELECT * FROM tags`).then(resp => resp.rows);
+    },
+    getUserBorrowedItems(id) {
+      return pool
+        .query(
+          `SELECT items.id,
+                          items.title,
+                          items.imageurl,
+                          items.description,
+                          items.borrower,
+                          items.created,
+                          items.itemowner,
+                          array_agg(tags.id) AS tags
+                  FROM items 
+                  LEFT OUTER JOIN itemtags
+                      ON itemtags.itemid = items.id
+                  INNER JOIN tags 
+                      ON tags.id = itemtags.tags
+                  WHERE borrower='${id}'
+                  GROUP BY items.id`
+        )
+        .then(res => res.rows);
+    },
+    getUserOwnedItems(id) {
+      return pool
+        .query(
+          `SELECT items.id,
+                      items.title,
+                      items.imageurl,
+                      items.description,
+                      items.borrower,
+                      items.created,
+                      items.itemowner,
+                      array_agg(tags.id) AS tags
+              FROM items 
+              LEFT OUTER JOIN itemtags
+                  ON itemtags.itemid = items.id
+              INNER JOIN tags 
+                  ON tags.id = itemtags.tags
+              WHERE items.itemowner='${id}'
+              GROUP BY items.id`
+        )
+        .then(res => res.rows);
     }
-
-    // console.log(res.rows);
-  });
-
-  return {};
+  };
 }

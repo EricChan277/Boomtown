@@ -5,7 +5,7 @@
         "browser": true,
         "es6": true
     },
-    "plugins": ["react", "jsx-a11y", "import"],
+    "plugins": ["react", "import"],
     "rules": {
         "indent": ["error", 4],
         "max-len": 0,

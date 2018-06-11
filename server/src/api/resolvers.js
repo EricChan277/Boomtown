@@ -6,62 +6,61 @@ export default function({ jsonResources, firebaseResources, pgResources }) {
   return {
     Query: {
       items(root) {
-        return jsonResources.items();
+        return pgResources.items();
       },
       users(root) {
-        return getUsers();
+        return firebaseResources.getUsers();
       },
       item(root, { id }) {
-        return jsonResources.item(id);
+        return pgResources.item(id);
       },
       user(root, { id }) {
-        return jsonResources.user(id);
+        return firebaseResources.user(id);
       }
     },
     Item: {
-      // Add to loader
       itemowner({ itemowner }, args, context) {
         return context.loaders.GetUsers.load(itemowner);
       },
-      async borrower({ borrower }) {
-        const user = await fetch(`${apiUrl}/users/${borrower}`);
-        const json = await user.json();
-        if (!json.id) return null;
-        return json;
+      async borrower({ borrower }, args, context) {
+        return borrower
+          ? await context.loaders.ItemBorrower.load(borrower)
+          : null;
       }
     },
+
     // New Item mutation
     Mutation: {
-      addItem(root, item) {
-        const newItem = {
-          title: item.title,
-          description: item.description,
-          imageurl: item.imageurl,
-          tags: item.tags,
-          itemowner: item.itemowner,
-          created: item.createDate,
-          available: item.available,
-          borrower: item.borrower
-        };
-        return fetch(`${apiUrl}/items`, {
-          body: JSON.stringify(newItem),
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          }
-        }).then(resp => resp.json());
-        return newItem;
+      // addItem(root, item) {
+      //   const newItem = {
+      //     title: item.title,
+      //     description: item.description,
+      //     imageurl: item.imageurl,
+      //     tags: item.tags,
+      //     itemowner: item.itemowner,
+      //     created: item.createDate,
+      //     available: item.available,
+      //     borrower: item.borrower
+      //   };
+      //   return fetch(`${apiUrl}/items`, {
+      //     body: JSON.stringify(newItem),
+      //     method: 'POST',
+      //     headers: {
+      //       'content-type': 'application/json'
+      //     }
+      //   }).then(resp => resp.json());
+      //   return newItem;
+      // }
+      addItem(root, args) {
+        return pgResources.addItem();
       }
     },
     User: {
       owneditems({ id }, args, context) {
         return context.loaders.UserOwnedItems.load(id);
       },
-      borroweditems({ id }) {
-        //Add to loader
-        return fetch(`${apiUrl}/items/?borrower=${id}`).then(resp =>
-          resp.json()
-        );
+      borroweditems({ id }, args, context) {
+        return context.loaders.GetUserBorrowed.load(id);
       }
     }
   };

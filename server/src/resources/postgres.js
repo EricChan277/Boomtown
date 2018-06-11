@@ -42,18 +42,18 @@ export default function(app) {
       return pool
         .query(
           `SELECT items.id,
-                          items.title,
-                          items.imageurl,
-                          items.description,
-                          items.borrower,
-                          items.created,
-                          items.itemowner,
-                          array_agg(tags.id) AS tags
+          items.title,
+          items.imageurl,
+          items.description,
+          items.itemowner,
+          items.borrower,
+          items.created,
+          array_agg(tags.id) AS tags
                   FROM items 
                   LEFT OUTER JOIN itemtags
                       ON itemtags.itemid = items.id
                   INNER JOIN tags 
-                      ON tags.id = itemtags.tags
+                      ON tags.id = itemtags.tagid
                   WHERE borrower='${id}'
                   GROUP BY items.id`
         )
@@ -63,18 +63,18 @@ export default function(app) {
       return pool
         .query(
           `SELECT items.id,
-                      items.title,
-                      items.imageurl,
-                      items.description,
-                      items.borrower,
-                      items.created,
-                      items.itemowner,
-                      array_agg(tags.id) AS tags
+          items.title,
+          items.imageurl,
+          items.description,
+          items.itemowner,
+          items.borrower,
+          items.created,
+          array_agg(tags.id) AS tags
               FROM items 
               LEFT OUTER JOIN itemtags
                   ON itemtags.itemid = items.id
               INNER JOIN tags 
-                  ON tags.id = itemtags.tags
+                  ON tags.id = itemtags.tagid
               WHERE items.itemowner='${id}'
               GROUP BY items.id`
         )
